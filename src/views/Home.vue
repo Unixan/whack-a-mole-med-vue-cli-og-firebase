@@ -1,5 +1,6 @@
 <template>
   <Game :isPlaying="isPlaying" v-if="isPlaying" />
+  
 </template>
 
 <script>

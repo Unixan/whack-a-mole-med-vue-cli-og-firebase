@@ -5,14 +5,13 @@
       <div>Score: {{ score }}</div>
     </div>
     <div class="gameboard">
-      <div v-for="mole in moles" :key="mole">
+      <div v-for="mole in moles" :key="mole" @click="flip(mole)">
         <img src="../IMG/Hole.png" v-if="!mole.mole" />
         <img src="../IMG/Mole.png" v-if="mole.mole" />
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import { ref } from "vue";
 export default {
@@ -30,11 +29,15 @@ export default {
       { no: 9, mole: false },
     ]);
 
-    const timeLeft = ref(60);
+    const timeLeft = ref(5);
+
+    const flip = (mole) => {
+      mole.mole = !mole.mole;
+    };
 
     const score = ref(0);
 
-    return { timeLeft, moles, score };
+    return { timeLeft, moles, score, flip };
   },
 };
 </script>
