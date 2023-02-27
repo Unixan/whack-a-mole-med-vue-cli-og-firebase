@@ -5,7 +5,7 @@
       <div>Score: {{ score }}</div>
     </div>
     <div class="gameboard">
-      <div v-for="mole in moles" :key="mole" @click="flip(mole)">
+      <div v-for="mole in moles" :key="mole" @click="whack(mole)">
         <img src="../IMG/Hole.png" v-if="!mole.mole" />
         <img src="../IMG/Mole.png" v-if="mole.mole" />
       </div>
@@ -13,9 +13,8 @@
   </div>
 </template>
 <script>
-import { ref } from "vue";
+import { ref, onMounted, onUpdated } from "vue";
 export default {
-  props: ["isPlaying"],
   setup(props, context) {
     const moles = ref([
       { no: 1, mole: false },
@@ -29,15 +28,65 @@ export default {
       { no: 9, mole: false },
     ]);
 
-    const timeLeft = ref(5);
+    const timeLeft = ref(60);
+    const score = ref(0);
+    const moleToPop = ref(null);
+    const molePoptimer = ref(null);
+    const moleHideTimer = ref(null);
+    const timeOuts = ref([]);
 
-    const flip = (mole) => {
-      mole.mole = !mole.mole;
+    const whack = (mole) => {
+      if(mole.mole){
+        score.value++
+        mole.mole = false
+      }
     };
 
-    const score = ref(0);
+    const startGame = () => {
+      score.value = 0;
+      timeLeft.value = 60;
+      popAMole();
+    };
 
-    return { timeLeft, moles, score, flip };
+    const popAMole = () => {
+      moleToPop.value = Math.floor(Math.random() * 9);
+      molePoptimer.value = 500 + Math.random() * 1500;
+      timeOuts.value.push(
+        setTimeout(() => {
+          moles.value[moleToPop.value].mole = true;
+          hideMole(moleToPop.value);
+          popAMole();
+        }, molePoptimer.value)
+      );
+    };
+
+    const hideMole = (moleNo) => {
+      moleHideTimer.value = 200 + Math.random() * 1000;
+      setTimeout(() => {
+        moles.value[moleNo].mole = false;
+      }, moleHideTimer.value);
+    };
+
+    const timer = () => {
+      setInterval(() => {
+        timeLeft.value--;
+      }, 1000);
+    };
+
+    timer();
+
+    onMounted(() => {
+      startGame();
+    });
+
+    onUpdated(() => {
+      if (timeLeft.value < 0) {
+        context.emit("outoftime", score.value);
+      }
+    });
+
+
+    return { timeLeft, moles, score, whack };
   },
 };
 </script>
