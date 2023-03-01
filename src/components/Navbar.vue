@@ -18,12 +18,19 @@ export default {
 </script>
 
 <style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 header {
   padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: gray;
+  width: 100%;
 }
 
 header a {

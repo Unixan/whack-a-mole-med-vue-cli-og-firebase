@@ -36,9 +36,9 @@ export default {
     const timeOuts = ref([]);
 
     const whack = (mole) => {
-      if(mole.mole){
-        score.value++
-        mole.mole = false
+      if (mole.mole) {
+        score.value++;
+        mole.mole = false;
       }
     };
 
@@ -67,13 +67,9 @@ export default {
       }, moleHideTimer.value);
     };
 
-    const timer = () => {
-      setInterval(() => {
-        timeLeft.value--;
-      }, 1000);
-    };
-
-    timer();
+    const timer = setInterval(() => {
+      timeLeft.value--;
+    }, 1000);
 
     onMounted(() => {
       startGame();
@@ -84,7 +80,6 @@ export default {
         context.emit("outoftime", score.value);
       }
     });
-
 
     return { timeLeft, moles, score, whack };
   },

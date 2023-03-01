@@ -15,7 +15,12 @@ export default {
 }
 
 #app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100vh;
+  max-width: 100vw;
   font-family: Arial, Helvetica, sans-serif;
+
 }
 </style>

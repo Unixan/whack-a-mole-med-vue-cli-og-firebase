@@ -1,6 +1,6 @@
 <template>
   <Game v-if="isPlaying && !gameOver" @outoftime="gameIsOver" />
-  <GameOver :score="score" v-if="gameOver"/>
+  <GameOver :score="score" v-if="gameOver" />
 </template>
 
 <script>
@@ -13,7 +13,7 @@ export default {
   setup() {
     const isPlaying = ref(true);
     const gameOver = ref(false);
-    const score = ref(null);
+    const score = ref(0);
 
     const gameIsOver = (x) => {
       gameOver.value = true;
