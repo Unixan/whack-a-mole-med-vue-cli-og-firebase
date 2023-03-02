@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="scoreboard">
-      <div>Time: {{ timeLeft }}</div>
-      <div>Score: {{ score }}</div>
+      <div>Tid: {{ timeLeft }}</div>
+      <div>Poeng: {{ score }}</div>
     </div>
     <div class="gameboard">
       <div v-for="mole in moles" :key="mole" @click="whack(mole)">
@@ -15,6 +15,7 @@
 <script>
 import { ref, onMounted, onUpdated } from "vue";
 export default {
+  emits: ["outoftime"],
   setup(props, context) {
     const moles = ref([
       { no: 1, mole: false },
@@ -115,5 +116,7 @@ export default {
   gap: 30px;
   border: solid black 4px;
   border-radius: 10px;
+  font-size: larger;
+  font-weight: bolder;
 }
 </style>

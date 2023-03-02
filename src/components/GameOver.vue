@@ -22,8 +22,6 @@ export default {
     const name = ref("");
     const points = props.score;
     const abortToHighscores = () => {
-      name.value = "";
-      points.value = null;
       router.push({ name: "Highscore" });
     };
 

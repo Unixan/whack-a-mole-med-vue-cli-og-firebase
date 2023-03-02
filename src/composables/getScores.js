@@ -7,7 +7,10 @@ const getScores = () => {
 
   const load = async () => {
     try {
-      const res = await moleApp.collection("highscores").orderBy('points', 'desc').get();
+      const res = await moleApp
+        .collection("highscores")
+        .orderBy("points", "desc")
+        .get();
 
       scores.value = res.docs.map((score) => {
         return { ...score.data() };
@@ -15,7 +18,6 @@ const getScores = () => {
     } catch (err) {
       error.value = err.message;
     }
-    console.log(scores.value)
   };
 
   return { scores, error, load };

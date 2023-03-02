@@ -12,6 +12,7 @@ export default {
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 #app {
@@ -21,6 +22,6 @@ export default {
   height: 100vh;
   max-width: 100vw;
   font-family: Arial, Helvetica, sans-serif;
-
+  font-variant: small-caps;
 }
 </style>

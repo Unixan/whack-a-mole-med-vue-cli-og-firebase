@@ -1,11 +1,6 @@
 <template>
   <header>
     <h1>Whack-A-Mole</h1>
-
-    <div class="links">
-      <router-link :to="{ name: 'Home' }">Game</router-link>
-      <router-link :to="{ name: 'Highscore' }">Highscores</router-link>
-    </div>
   </header>
 </template>
 
@@ -18,16 +13,11 @@ export default {
 </script>
 
 <style>
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 header {
   padding: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background: gray;
   width: 100%;

@@ -1,17 +1,19 @@
 <template>
+  <Start v-if="!isPlaying && !gameOver" @startGame="startTheGame" />
   <Game v-if="isPlaying && !gameOver" @outoftime="gameIsOver" />
   <GameOver :score="score" v-if="gameOver" />
 </template>
 
 <script>
-import { ref, onUpdated } from "vue";
+import { ref } from "vue";
 import Game from "../components/Game.vue";
 import GameOver from "../components/GameOver.vue";
+import Start from "../components/Start.vue";
 export default {
-  components: { Game, GameOver },
+  components: { Game, GameOver, Start },
   name: "Home",
   setup() {
-    const isPlaying = ref(true);
+    const isPlaying = ref(false);
     const gameOver = ref(false);
     const score = ref(0);
 
@@ -20,12 +22,11 @@ export default {
       score.value = x;
     };
 
-    onUpdated(() => {
-      console.log("Home updated");
-      console.log(score.value);
-    });
+    const startTheGame = () => {
+      isPlaying.value = true;
+    };
 
-    return { isPlaying, gameOver, gameIsOver, score };
+    return { isPlaying, gameOver, gameIsOver, score, startTheGame };
   },
 };
 </script>
