@@ -29,7 +29,7 @@ export default {
       { no: 9, mole: false },
     ]);
 
-    const timeLeft = ref(60);
+    const timeLeft = ref(null);
     const score = ref(0);
     const moleToPop = ref(null);
     const molePoptimer = ref(null);
@@ -45,7 +45,7 @@ export default {
 
     const startGame = () => {
       score.value = 0;
-      timeLeft.value = 60;
+      timeLeft.value = 15;
       popAMole();
     };
 
