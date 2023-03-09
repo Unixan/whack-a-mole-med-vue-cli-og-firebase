@@ -45,7 +45,7 @@ export default {
 
     const startGame = () => {
       score.value = 0;
-      timeLeft.value = 15;
+      timeLeft.value = 60;
       popAMole();
     };
 
