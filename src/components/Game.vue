@@ -6,8 +6,8 @@
     </div>
     <div class="gameboard">
       <div v-for="mole in moles" :key="mole" @click="whack(mole)">
-        <img src="../IMG/Hole.png" v-if="!mole.mole" />
-        <img src="../IMG/Mole.png" v-if="mole.mole" />
+        <img src="../IMG/Hole.png" v-if="!mole.mole" draggable="false" />
+        <img src="../IMG/Mole.png" v-if="mole.mole" draggable="false" />
       </div>
     </div>
   </div>
